@@ -1,0 +1,332 @@
+[
+    {
+        "id": "043f4767fe41a426",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6578f04537e51f37",
+        "type": "junction",
+        "z": "043f4767fe41a426",
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "d69ad603fc49c4ab"
+            ]
+        ]
+    },
+    {
+        "id": "53317e786d30648a",
+        "type": "junction",
+        "z": "043f4767fe41a426",
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "6578f04537e51f37",
+                "e5ce373f4af994e3"
+            ]
+        ]
+    },
+    {
+        "id": "f4d05040ec182784",
+        "type": "junction",
+        "z": "043f4767fe41a426",
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "6578f04537e51f37"
+            ]
+        ]
+    },
+    {
+        "id": "e5ce373f4af994e3",
+        "type": "junction",
+        "z": "043f4767fe41a426",
+        "x": 700,
+        "y": 180,
+        "wires": [
+            [
+                "4a55173f76a45a5d",
+                "dde52ad6876d4df9"
+            ]
+        ]
+    },
+    {
+        "id": "f01f632b1020a785",
+        "type": "junction",
+        "z": "043f4767fe41a426",
+        "x": 900,
+        "y": 260,
+        "wires": [
+            [
+                "d2d828ec7bbe9c01",
+                "4a55173f76a45a5d"
+            ]
+        ]
+    },
+    {
+        "id": "e6cdee356ce2227e",
+        "type": "comment",
+        "z": "043f4767fe41a426",
+        "name": "练习读多个节点数据",
+        "info": "",
+        "x": 190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "46fc8e6348975bf1",
+        "type": "inject",
+        "z": "043f4767fe41a426",
+        "name": "Add Item",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "4e68c60115ca5fdd"
+            ]
+        ]
+    },
+    {
+        "id": "4e68c60115ca5fdd",
+        "type": "OpcUa-Item",
+        "z": "043f4767fe41a426",
+        "item": "ns=1;i=1447",
+        "datatype": "Double",
+        "value": "",
+        "name": "TankLevel",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "53317e786d30648a"
+            ]
+        ]
+    },
+    {
+        "id": "d69ad603fc49c4ab",
+        "type": "OpcUa-Client",
+        "z": "043f4767fe41a426",
+        "endpoint": "2316772a6546b1d1",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "OPC UA Client (READ)",
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "f01f632b1020a785"
+            ]
+        ]
+    },
+    {
+        "id": "4aa01b41e3414eb6",
+        "type": "inject",
+        "z": "043f4767fe41a426",
+        "name": "Add Item",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "6714b915e66a169e"
+            ]
+        ]
+    },
+    {
+        "id": "6714b915e66a169e",
+        "type": "OpcUa-Item",
+        "z": "043f4767fe41a426",
+        "item": "ns=1;i=1456",
+        "datatype": "Double",
+        "value": "",
+        "name": "LevelLowLimit",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "53317e786d30648a"
+            ]
+        ]
+    },
+    {
+        "id": "26bbbc6321b92139",
+        "type": "inject",
+        "z": "043f4767fe41a426",
+        "name": "msg.topic=readmultiple",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "f4d05040ec182784"
+            ]
+        ]
+    },
+    {
+        "id": "4b0e7a1b2cdf7455",
+        "type": "inject",
+        "z": "043f4767fe41a426",
+        "name": "msg.topic=clearitems",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "clearitems",
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "f4d05040ec182784"
+            ]
+        ]
+    },
+    {
+        "id": "d2d828ec7bbe9c01",
+        "type": "debug",
+        "z": "043f4767fe41a426",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dde52ad6876d4df9",
+        "type": "debug",
+        "z": "043f4767fe41a426",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4a55173f76a45a5d",
+        "type": "attach-node-browseName",
+        "z": "043f4767fe41a426",
+        "name": "Attach browseName",
+        "x": 1040,
+        "y": 200,
+        "wires": [
+            [
+                "ce66fb68dd7308bc"
+            ]
+        ]
+    },
+    {
+        "id": "ce66fb68dd7308bc",
+        "type": "debug",
+        "z": "043f4767fe41a426",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6babba1fdd2ef250",
+        "type": "comment",
+        "z": "043f4767fe41a426",
+        "name": "在消息中增加ua节点的browseName",
+        "info": "当opc ua client 读取多个节点时,\n首先向ua 客户端增加节点，\n这时消息的topic中包含节点的browseName\n如：\n> {\"_msgid\":\"647ce35a9062c3a7\",\"payload\":1665641675806,\"topic\":\"ns=1;i=1456\",\"datatype\":\"Double\",\"browseName\":\"LevelLowLimit\"}\n\n但ua client 读取多个节点的结果中，不再包含browseName\n而仅仅包含ua node的id。\n如：\n> {\"topic\":{\"nodeId\":\"ns=1;i=1456\",\"attributeId\":13,\"TimestampsToReturn\":2},\"payload\":0.2,\"serverTimestamp\":\"2022-10-13T06:14:50.018Z\",\"sourceTimestamp\":\"2022-09-15T08:47:46.760Z\",\"_msgid\":\"7033fb78538da981\"}\n\n这样，在进一步导出数据或者处理时，难以区分数值的含义，\n通过attach-browseName节点，为消息添加browseName，如\n> {\"topic\":{\"nodeId\":\"ns=1;i=1447\",\"attributeId\":13,\"TimestampsToReturn\":2,\"browseName\":\"TankLevel\"},\"payload\":0.916998697044078,\"serverTimestamp\":\"2022-10-13T06:14:50.018Z\",\"sourceTimestamp\":\"2022-10-13T06:14:49.887Z\",\"_msgid\":\"e6e6c160537c8c97\"}",
+        "x": 1040,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2316772a6546b1d1",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://opcuademo.sterfive.com:26543",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    }
+]
