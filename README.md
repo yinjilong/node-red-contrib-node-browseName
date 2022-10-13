@@ -1,6 +1,8 @@
 # node-red-contrib-node-browseName
 
-A simple node that attaches browseName to msg.topic for opc-ua node when it doesn't exist.
+A simple node that attaches browseName to msg.topic for opc-ua node when it doesn't exist.## 
+
+## Description
 
 当opc ua client 读取多个节点时,首先向ua 客户端增加节点，这时消息的topic中包含节点的browseName。如：
 
@@ -19,5 +21,21 @@ A simple node that attaches browseName to msg.topic for opc-ua node when it does
 ```json
 {"topic":{"nodeId":"ns=1;i=1447","attributeId":13,"TimestampsToReturn":2,"browseName":"TankLevel"},"payload":0.916998697044078,"serverTimestamp":"2022-10-13T06:14:50.018Z","sourceTimestamp":"2022-10-13T06:14:49.887Z","_msgid":"e6e6c160537c8c97"}```
 ```
+
+## Installation
+
+Install from github
+
+> npm install git+https://github.com/yinjilong/node-red-contrib-node-browseName.git
+
+```bash
+npm install git+https://github.com/yinjilong/node-red-contrib-node-browseName.git
+```
+
+### Example
+
+
+
+![](images/2022-10-13-16-38-14-image.png)
 
 ==END==
