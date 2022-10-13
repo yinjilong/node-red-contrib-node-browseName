@@ -1,1 +1,1 @@
-"# node-red-contrib-node-browseName" 
+# node-red-contrib-node-browseName

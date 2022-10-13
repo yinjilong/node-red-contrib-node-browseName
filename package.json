@@ -1,0 +1,20 @@
+{
+  "name": "node-red-contrib-attach-node-browsename",
+  "version": "0.0.1",
+  "author": "JILONG YIN <yinjilong@gmail.com>",
+  "description": "attach node browsername to msg topic field(msg.topic.browseName=msg.browseName)",
+  "repository":"yinjilong/node-red-contrib-node-browseName.git",
+  "keywords": [
+    "node-red"
+  ],
+  "node-red":{
+    "nodes":{
+      "attach-node-browseName":"browsename/attach-browsename.js"
+    }
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yinjilong/node-red-contrib-node-browseName/issues"
+  },
+  "homepage": "https://github.com/yinjilong/node-red-contrib-node-browseName#readme"
+}
