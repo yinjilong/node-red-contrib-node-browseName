@@ -9,7 +9,8 @@ module.exports = function(RED) {
                 var topic = msg.topic;
                 var browseName = msg.browseName;
                 node.browse_names[topic]=browseName;
-                set_node_status_to("browseName stored:"+browseName);
+                if (config.enableStatus)
+                    this.status({fill:"green",shape:"dot",text:"browseName stored:"+browseName});
             } 
             else{
                 if (typeof msg.topic === 'object'){
@@ -17,8 +18,9 @@ module.exports = function(RED) {
                         var nodeID = msg.topic.nodeId;
                         //attach browse_name
                         if (node.browse_names.hasOwnProperty(nodeID) && !msg.topic.hasOwnProperty('browseName')){
-                            msg.topic.browseName = node.browse_names[nodeID];   
-                            set_node_status_to("browseName attached:"+browseName);                     
+                            msg.topic.browseName = node.browse_names[nodeID];                               
+                            if (config.enableStatus)
+                                this.status({fill:"green",shape:"dot",text:"browseName attached:"+msg.topic.browseName});                    
                         }                    
                     }                
                 }
